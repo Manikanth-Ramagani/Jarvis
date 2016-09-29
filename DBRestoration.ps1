@@ -52,17 +52,9 @@ Param
     #Backup-SqlDatabase -ServerInstance $SqlServer -Database $dbname -BackupFile $PathToBackup -ConnectionTimeout 0
     OSQL -S $SqlServer -E -Q "BACKUP DATABASE $dbname TO DISK = 'E:\MSSQL11.MSSQLSERVER\MSSQL\bak\$dbname.bak' WITH INIT"  
     #Restore with overwrite
-    IF($dbname -eq 'feedstore') 
-     {
-     write-host 'backup Jeminfra'
-     OSQL -S $SqlServer -E -Q "BACKUP DATABASE $dbname FROM $Bakfiles WITH INIT"
-     }
-     ELSE 
-     {
-     write-host 'backup Jem_Data'
-     OSQL -S $SqlServer -E -Q "BACKUP DATABASE $dbname FROM $Bakfiles WITH INIT"
-     }
-     
+        
+    OSQL -S $SqlServer -E -Q "BACKUP DATABASE $dbname FROM $Bakfiles WITH INIT"
+         
 
     }
 
